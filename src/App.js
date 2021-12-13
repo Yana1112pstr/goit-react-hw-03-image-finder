@@ -73,18 +73,16 @@ class App extends Component {
   };
 
   render() {
-    const { handleChangeQuery } = this;
+    const { handleChangeQuery, toggleModal, onLoadMore } = this;
     const { status, images, showModal, largeImage } = this.state;
 
     return (
       <div className="App">
         <SearchBar onSubmit={handleChangeQuery} />
         {status === "pending" && <LoaderBall />}
-        <ImageGallery images={images} onClick={this.toggleModal} />
-        {status === "resolved" && <Button onClick={this.onLoadMore} />}
-        {showModal && (
-          <Modal largeImage={largeImage} onClick={this.toggleModal} />
-        )}
+        <ImageGallery images={images} onClick={toggleModal} />
+        {status === "resolved" && <Button onClick={onLoadMore} />}
+        {showModal && <Modal largeImage={largeImage} onClick={toggleModal} />}
         <ToastContainer autoClose={3000} />
       </div>
     );

@@ -4,14 +4,15 @@ import PropTypes from "prop-types";
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
 
 const ImageGallery = ({ images, onClick }) => {
+  const { imageGallery, imageGalleryItem } = s;
   return (
-    <ul className={s.imageGallery}>
-      {images.map((image) => (
-        <li key={image.id} className={s.imageGalleryItem}>
+    <ul className={imageGallery}>
+      {images.map(({ id, webformatURL, tags, largeImageURL }) => (
+        <li key={id} className={imageGalleryItem}>
           <ImageGalleryItem
-            src={image.webformatURL}
-            alt={image.tags}
-            largeImage={image.largeImageURL}
+            src={webformatURL}
+            alt={tags}
+            largeImage={largeImageURL}
             onClick={onClick}
           />
         </li>
